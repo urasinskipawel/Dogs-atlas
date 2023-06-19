@@ -1,0 +1,16 @@
+.Btn {
+	background: none;
+	font-weight: 600;
+	cursor: pointer;
+	padding: 10px 40px;
+	border-radius: 10px;
+	border: none;
+	background-color: var(--btn-color);
+	color: #fff;
+	margin: auto 6px;
+	transition: 0.3s;
+}
+
+.Btn:hover {
+	background-color: var(--btn-color-hover);
+}

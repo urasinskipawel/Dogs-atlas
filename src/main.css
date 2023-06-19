@@ -1,0 +1,16 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+:root {
+	--btn-color: #da4848;
+	--btn-color-hover: #fc4a4a;
+}
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #e8e8e8;
+	font-family: 'Open Sans', sans-serif;
+}
