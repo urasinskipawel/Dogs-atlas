@@ -1,0 +1,11 @@
+.DogImage {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	max-height: 100%;
+}
+
+.DogImage img {
+	width: 70%;
+	margin: 30px 0;
+}
