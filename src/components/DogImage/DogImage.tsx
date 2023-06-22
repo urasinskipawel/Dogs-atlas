@@ -1,4 +1,6 @@
+import { Spinner } from '../common/Spinner/Spinner';
 import { useEffect, useState } from 'react';
+
 import './DogImage.css';
 
 interface DogImage {
@@ -18,7 +20,7 @@ export const DogImage = () => {
 	}, []);
 
 	if (image === null) {
-		return <p>Wczytywanie danych...</p>;
+		return <Spinner />;
 	}
 
 	return (

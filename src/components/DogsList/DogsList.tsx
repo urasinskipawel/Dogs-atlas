@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { DogItem } from '../DogItem/DogItem';
+import { Spinner } from '../common/Spinner/Spinner';
+
 import './DogsList.css';
 
 interface DogsList {
@@ -18,7 +20,7 @@ export const DogsList = () => {
 	}, []);
 
 	if (dogs === null) {
-		return <p>Wczytywanie danych...</p>;
+		return <Spinner />;
 	}
 
 	return (
