@@ -6,6 +6,7 @@
 :root {
 	--btn-color: #da4848;
 	--btn-color-hover: #fc4a4a;
+	--bgc-color: #e8e8e8;
 }
 body {
 	display: flex;
@@ -13,6 +14,6 @@ body {
 	align-items: center;
 	justify-content: center;
 	min-height: 100vh;
-	background-color: #e8e8e8;
+	background-color: var(--bgc-color);
 	font-family: 'Open Sans', sans-serif;
 }
