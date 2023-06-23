@@ -1,12 +1,11 @@
 import { DogImage } from '../DogImage/DogImage';
-import { DogsList } from '../DogsList/DogsList';
 import { DogsSearch } from '../DogsSearch/DogsSearch';
-import './Content.css';
 
-export const Content = () => {
+import './DogsSearchBox.css';
+
+export const DogsSearchBox = () => {
 	return (
-		<div className='Content'>
-			{/* <DogsList /> */}
+		<div className='DogsSearchBox'>
 			<DogsSearch />
 			<DogImage />
 		</div>

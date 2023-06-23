@@ -1,9 +1,12 @@
 import './Btn.css';
 
-export const Btn = () => {
+export const Btn = props => {
+	const setView = props.setView;
 	return (
 		<>
-			<button className='Btn'>Dogs</button>
+			<button className='Btn' onClick={setView}>
+				{props.name}
+			</button>
 		</>
 	);
 };

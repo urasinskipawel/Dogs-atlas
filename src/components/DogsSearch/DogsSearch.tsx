@@ -7,7 +7,7 @@ export const DogsSearch = () => {
 			<form>
 				<input type='text' />
 			</form>
-			<Btn />
+			<Btn name={'Search'} />
 		</div>
 	);
 };
