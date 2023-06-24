@@ -4,7 +4,7 @@
 	justify-content: center;
 	align-items: center;
 }
-input {
+.DogsSearch input {
 	width: 200px;
 	margin: 10px;
 	padding: 5px;
@@ -16,6 +16,12 @@ input {
 	outline: none;
 }
 
-input:focus {
+.DogsSearch input:focus {
 	border: 2.5px solid var(--btn-color-hover);
+}
+
+.DogsSearch h2 {
+	margin: 30px;
+	color: var(--btn-color);
+	text-align: center;
 }

@@ -7,7 +7,6 @@ export const DogsSearchBox = () => {
 	return (
 		<div className='DogsSearchBox'>
 			<DogsSearch />
-			<DogImage />
 		</div>
 	);
 };
