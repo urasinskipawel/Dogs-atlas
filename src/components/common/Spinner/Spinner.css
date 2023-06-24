@@ -5,23 +5,19 @@
 	width: 8em;
 	height: 8em;
 	border-radius: 50%;
-	background: var(--btn-color-hover);
-	background: -moz-linear-gradient(left, var(-) 10%, rgba(0, 255, 255, 0) 42%);
-	background: -webkit-linear-gradient(left, var(-) 10%, rgba(0, 255, 255, 0) 42%);
-	background: -o-linear-gradient(left, var(-) 10%, rgba(0, 255, 255, 0) 42%);
-	background: -ms-linear-gradient(left, var(-) 10%, rgba(0, 255, 255, 0) 42%);
-	background: linear-gradient(to right, var(-) 10%, rgba(0, 255, 255, 0) 42%);
+	border-top: 3px solid transparent;
+	border-left: 3px solid var(--btn-color-hover);
+	border-right: 3px solid var(--btn-color-hover);
+	border-bottom: 3px solid var(--btn-color-hover);
+	transform: rotate(45deg);
 	position: relative;
-	-webkit-animation: load3 1.4s infinite linear;
 	animation: load3 1.4s infinite linear;
-	-webkit-transform: translateZ(0);
-	-ms-transform: translateZ(0);
 	transform: translateZ(0);
 }
 .Spinner:before {
 	width: 50%;
 	height: 50%;
-	background: var(-);
+	background: var(--bgc-color);
 	border-radius: 100% 0 0 0;
 	position: absolute;
 	top: 0;
