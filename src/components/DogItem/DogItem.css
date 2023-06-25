@@ -1,3 +1,8 @@
 .DogItem {
 	margin-bottom: 5px;
+	cursor: pointer;
+}
+
+.DogItem:hover {
+	color: var(--btn-color-hover);
 }

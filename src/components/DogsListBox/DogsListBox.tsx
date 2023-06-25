@@ -2,10 +2,11 @@ import { DogsList } from '../DogsList/DogsList';
 
 import './DogsListBox.css';
 
-export const DogsListBox = () => {
+export const DogsListBox = props => {
+	const setView = props.setView;
 	return (
 		<div className='DogsListBox'>
-			<DogsList />
+			<DogsList setView={setView} />
 		</div>
 	);
 };
