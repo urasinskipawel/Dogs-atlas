@@ -5,7 +5,7 @@ import './DogsListBox.css';
 export const DogsListBox = props => {
 	const setView = props.setView;
 	return (
-		<div className='DogsListBox'>
+		<div id='scrollableDiv'>
 			<DogsList setView={setView} />
 		</div>
 	);

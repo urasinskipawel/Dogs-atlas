@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react';
 import { DogItem } from '../DogItem/DogItem';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 import './DogsList.css';
-import { Spinner } from '../common/Spinner/Spinner';
 
 export const DogsList = props => {
-	const [items, setItems] = useState<[] | null>(null);
+	const [items, setItems] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [err, setErr] = useState('');
+	const [hasMore, setHasMore] = useState(true);
+	const [lastPosition, setLastPosition] = useState(0);
 
+	const perPage = 15;
 	const setView = props.setView;
 
 	const fetchData = async () => {
@@ -18,9 +21,17 @@ export const DogsList = props => {
 			const res = await fetch('https://dog.ceo/api/breeds/list/all');
 			const data = await res.json();
 			const dogsArr = Object.keys(data.message);
+			const slicedArr = dogsArr.slice(lastPosition, lastPosition + perPage);
 
-			setItems(dogsArr);
-			setErr('');
+			if (items.length >= dogsArr.length) {
+				setHasMore(false);
+			} else {
+				setTimeout(() => {
+					setItems(items.concat(...slicedArr));
+				}, 500);
+			}
+
+			setLastPosition(lastPosition + perPage);
 		} catch (err) {
 			setErr(err);
 		} finally {
@@ -32,15 +43,25 @@ export const DogsList = props => {
 		fetchData();
 	}, []);
 
-	if (items === null) {
-		return <Spinner />;
-	}
-
 	return (
-		<ul className='Dogs-list'>
-			{items.map(item => (
-				<DogItem dog={item} key={crypto.randomUUID()} setView={() => setView(2)} />
-			))}
-		</ul>
+		<>
+			<InfiniteScroll
+				dataLength={items.length}
+				next={fetchData}
+				hasMore={hasMore}
+				loader={<p className='Scroll-paragraph'>Loading..</p>}
+				scrollableTarget='scrollableDiv'
+				endMessage={
+					<a className='Scroll-link' href=''>
+						<p className='scroll-paragraph'>You have have already seen all breeds</p>
+					</a>
+				}>
+				<ul className='Dogs-list'>
+					{items.map(item => (
+						<DogItem dog={item} key={crypto.randomUUID()} setView={() => setView(2)} />
+					))}
+				</ul>
+			</InfiniteScroll>
+		</>
 	);
 };

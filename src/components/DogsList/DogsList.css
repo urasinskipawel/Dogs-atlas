@@ -1,3 +1,13 @@
+.Scroll-paragraph,
+.Scroll-link {
+	margin-top: 10px;
+	text-align: center;
+	font-weight: 600;
+	font-size: 20px;
+	text-decoration: none;
+	color: black;
+}
+
 .Dogs-list {
 	list-style: circle;
 	display: flex;
