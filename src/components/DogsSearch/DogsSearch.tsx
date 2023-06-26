@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { Btn } from '../common/Btn/Btn';
-import './DogsSearch.css';
 import { DogImage } from '../DogImage/DogImage';
 import { Spinner } from '../common/Spinner/Spinner';
+import axios from 'axios';
+
+import './DogsSearch.css';
 
 export const DogsSearch = () => {
 	const [inputVal, setInputVal] = useState('');
@@ -17,22 +19,18 @@ export const DogsSearch = () => {
 
 	const sendForm = e => {
 		e.preventDefault();
-		console.log('wyslano !');
 	};
 
 	const takeData = async () => {
 		setIsLoading(true);
 		try {
-			const res = await fetch(`https://dog.ceo/api/breed/${inputVal}/images`);
-			if (!res.ok) {
-				throw new Error(`The breed you provided does not exist`);
-			}
-			const data = await res.json();
+			const res = await axios.get(`https://dog.ceo/api/breed/${inputVal}/images`);
+			const data = await res.data;
 			const imgArr = data.message;
 			setImage(imgArr[Math.floor(Math.random() * imgArr.length)]);
 			setErr('');
 		} catch (err) {
-			setErr(err.message);
+			setErr('The breed you provided does not exist');
 			setImage(null);
 		} finally {
 			setIsLoading(false);

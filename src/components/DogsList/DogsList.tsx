@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { DogItem } from '../DogItem/DogItem';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import axios from 'axios';
 
 import './DogsList.css';
 
@@ -18,8 +19,8 @@ export const DogsList = props => {
 		setIsLoading(true);
 
 		try {
-			const res = await fetch('https://dog.ceo/api/breeds/list/all');
-			const data = await res.json();
+			const res = await axios.get('https://dog.ceo/api/breeds/list/all');
+			const data = await res.data;
 			const dogsArr = Object.keys(data.message);
 			const slicedArr = dogsArr.slice(lastPosition, lastPosition + perPage);
 
