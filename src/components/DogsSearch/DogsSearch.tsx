@@ -1,32 +1,36 @@
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { Btn } from '../common/Btn/Btn';
 import { DogImage } from '../DogImage/DogImage';
 import { Spinner } from '../common/Spinner/Spinner';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 import './DogsSearch.css';
 
-export const DogsSearch = () => {
-	const [inputVal, setInputVal] = useState('');
-	const [updatedInputVal, setUpdatedInputVal] = useState(inputVal);
-	const [image, setImage] = useState(null);
-	const [err, setErr] = useState('');
-	const [isLoading, setIsLoading] = useState(false);
+interface DogsData {
+	message: string[];
+}
 
-	const handleInputValue = event => {
-		setInputVal(event.target.value);
+export const DogsSearch = () => {
+	const [inputVal, setInputVal] = useState<string>('');
+	const [updatedInputVal, setUpdatedInputVal] = useState<string>(inputVal);
+	const [image, setImage] = useState<string | null>(null);
+	const [err, setErr] = useState<string>('');
+	const [isLoading, setIsLoading] = useState<boolean>(false);
+
+	const handleInputValue = (e: ChangeEvent<HTMLInputElement>): void => {
+		setInputVal(e.target.value);
 	};
 
-	const sendForm = e => {
+	const sendForm = (e: FormEvent) => {
 		e.preventDefault();
 	};
 
-	const takeData = async () => {
+	const takeData = async (): Promise<void> => {
 		setIsLoading(true);
 		try {
-			const res = await axios.get(`https://dog.ceo/api/breed/${inputVal}/images`);
-			const data = await res.data;
-			const imgArr = data.message;
+			const res: AxiosResponse<DogsData> = await axios.get(`https://dog.ceo/api/breed/${inputVal}/images`);
+			const data: DogsData = await res.data;
+			const imgArr: string[] = data.message;
 			setImage(imgArr[Math.floor(Math.random() * imgArr.length)]);
 			setErr('');
 		} catch (err) {

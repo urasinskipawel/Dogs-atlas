@@ -3,21 +3,20 @@ import { DogsListBox } from '../DogsListBox/DogsListBox';
 import { DogsSearchBox } from '../DogsSearchBox/DogsSearchBox';
 import { Header } from '../Header/Header';
 import { ToggledNavbar } from '../ToggledNavbar/ToggledNavbar';
-import { Link } from 'react-router-dom';
 
 import './App.css';
 
-export const App = props => {
+export const App = () => {
 	const [active, setActive] = useState<number>(1);
 
-	const SetView = active => {
+	const SetView = (active: number): void => {
 		setActive(active);
 	};
 
-	const ActiveView = () => {
+	const ActiveView = (): JSX.Element | null => {
 		switch (active) {
 			case 1:
-				return <DogsListBox setView={SetView}/>;
+				return <DogsListBox setView={SetView} />;
 			case 2:
 				return <DogsSearchBox />;
 			default:

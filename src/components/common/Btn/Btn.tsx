@@ -1,8 +1,14 @@
 import './Btn.css';
 
-export const Btn = props => {
-	const setView = props.setView;
-	const handleClick = props.handleClick;
+interface Props {
+	name: string;
+	setView?: () => void;
+	handleClick?: () => void;
+}
+
+export const Btn = (props: Props) => {
+	const { setView, handleClick } = props;
+
 	return (
 		<>
 			<button

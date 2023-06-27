@@ -1,12 +1,12 @@
-import { DogImage } from '../DogImage/DogImage';
 import './DogItem.css';
 
 interface Props {
 	dog: string;
+	setView?: () => void;
 }
 
-export const DogItem = props => {
-	const setView = props.setView;
+export const DogItem = (props: Props) => {
+	const { setView } = props;
 
 	return (
 		<li
@@ -14,9 +14,7 @@ export const DogItem = props => {
 			onClick={() => {
 				setView && setView();
 			}}>
-			<p>
-				{props.dog}
-			</p>
+			<p>{props.dog}</p>
 		</li>
 	);
 };

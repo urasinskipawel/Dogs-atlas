@@ -1,8 +1,14 @@
 import { Btn } from '../common/Btn/Btn';
+import { SetViewFunction } from '../../types/dogs-data';
+
 import './ToggledNavbar.css';
 
-export const ToggledNavbar = props => {
-	const setView = props.setView;
+interface Props {
+	setView: SetViewFunction;
+}
+
+export const ToggledNavbar = (props: Props) => {
+	const setView: SetViewFunction = props.setView;
 
 	return (
 		<div className='Toggled-navbar'>

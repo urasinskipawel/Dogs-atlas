@@ -1,28 +1,36 @@
 import { useEffect, useState } from 'react';
 import { DogItem } from '../DogItem/DogItem';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
+import { SetViewFunction } from '../../types/dogs-data';
 
 import './DogsList.css';
 
-export const DogsList = props => {
-	const [items, setItems] = useState([]);
-	const [isLoading, setIsLoading] = useState(false);
-	const [err, setErr] = useState('');
-	const [hasMore, setHasMore] = useState(true);
-	const [lastPosition, setLastPosition] = useState(0);
+interface Props {
+	setView: SetViewFunction;
+}
+interface DogsData {
+	message: Record<string, string[]>;
+}
+
+export const DogsList = (props: Props) => {
+	const [items, setItems] = useState<string[]>([]);
+	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const [err, setErr] = useState<string | unknown>('');
+	const [hasMore, setHasMore] = useState<boolean>(true);
+	const [lastPosition, setLastPosition] = useState<number>(0);
 
 	const perPage = 15;
-	const setView = props.setView;
+	const { setView } = props;
 
-	const fetchData = async () => {
+	const fetchData = async (): Promise<void> => {
 		setIsLoading(true);
 
 		try {
-			const res = await axios.get('https://dog.ceo/api/breeds/list/all');
-			const data = await res.data;
-			const dogsArr = Object.keys(data.message);
-			const slicedArr = dogsArr.slice(lastPosition, lastPosition + perPage);
+			const res: AxiosResponse<DogsData> = await axios.get('https://dog.ceo/api/breeds/list/all');
+			const data: DogsData = await res.data;
+			const dogsArr: string[] = Object.keys(data.message);
+			const slicedArr: string[] = dogsArr.slice(lastPosition, lastPosition + perPage);
 
 			if (items.length >= dogsArr.length) {
 				setHasMore(false);

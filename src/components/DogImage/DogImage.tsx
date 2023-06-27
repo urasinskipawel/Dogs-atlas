@@ -1,9 +1,14 @@
 import './DogImage.css';
 
-export const DogImage = props => {
+interface Props {
+	src: string | null;
+	alt?: string;
+}
+
+export const DogImage = (props: Props) => {
 	return (
 		<div className='DogImage'>
-			<img src={props.src} alt={props.alt && ''} />
+			<img src={props.src as string} alt={props.alt && ''} />
 		</div>
 	);
 };
