@@ -2,10 +2,16 @@ import { DogsSearch } from '../DogsSearch/DogsSearch';
 
 import './DogsSearchBox.css';
 
-export const DogsSearchBox = () => {
+interface Props {
+	clickedValue: string;
+}
+
+export const DogsSearchBox = (props: Props) => {
+	const { clickedValue } = props;
+
 	return (
 		<div className='DogsSearchBox'>
-			<DogsSearch />
+			<DogsSearch clickedValue={clickedValue} />
 		</div>
 	);
 };

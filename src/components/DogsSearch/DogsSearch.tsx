@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { Btn } from '../common/Btn/Btn';
 import { DogImage } from '../DogImage/DogImage';
 import { Spinner } from '../common/Spinner/Spinner';
@@ -9,13 +9,18 @@ import './DogsSearch.css';
 interface DogsData {
 	message: string[];
 }
+interface Props {
+	clickedValue: string;
+}
 
-export const DogsSearch = () => {
+export const DogsSearch = (props: Props) => {
 	const [inputVal, setInputVal] = useState<string>('');
 	const [updatedInputVal, setUpdatedInputVal] = useState<string>(inputVal);
 	const [image, setImage] = useState<string | null>(null);
 	const [err, setErr] = useState<string>('');
 	const [isLoading, setIsLoading] = useState<boolean>(false);
+
+	const { clickedValue } = props;
 
 	const handleInputValue = (e: ChangeEvent<HTMLInputElement>): void => {
 		setInputVal(e.target.value);
@@ -25,10 +30,10 @@ export const DogsSearch = () => {
 		e.preventDefault();
 	};
 
-	const takeData = async (): Promise<void> => {
+	const takeData = async (value: string): Promise<void> => {
 		setIsLoading(true);
 		try {
-			const res: AxiosResponse<DogsData> = await axios.get(`https://dog.ceo/api/breed/${inputVal}/images`);
+			const res: AxiosResponse<DogsData> = await axios.get(`https://dog.ceo/api/breed/${value}/images`);
 			const data: DogsData = await res.data;
 			const imgArr: string[] = data.message;
 			setImage(imgArr[Math.floor(Math.random() * imgArr.length)]);
@@ -41,9 +46,15 @@ export const DogsSearch = () => {
 		}
 	};
 
+	useEffect(() => {
+		if (clickedValue) {
+			takeData(clickedValue);
+		}
+	}, [clickedValue]);
+
 	const handleClick = () => {
 		setUpdatedInputVal(inputVal);
-		takeData();
+		takeData(inputVal);
 	};
 
 	return (

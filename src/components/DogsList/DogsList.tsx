@@ -8,6 +8,7 @@ import './DogsList.css';
 
 interface Props {
 	setView: SetViewFunction;
+	handleDogClickedValue: (dogName: string) => void;
 }
 interface DogsData {
 	message: Record<string, string[]>;
@@ -21,7 +22,7 @@ export const DogsList = (props: Props) => {
 	const [lastPosition, setLastPosition] = useState<number>(0);
 
 	const perPage = 15;
-	const { setView } = props;
+	const { setView, handleDogClickedValue } = props;
 
 	const fetchData = async (): Promise<void> => {
 		setIsLoading(true);
@@ -52,6 +53,10 @@ export const DogsList = (props: Props) => {
 		fetchData();
 	}, []);
 
+	const handleClick = (dogName: string): void => {
+		handleDogClickedValue(dogName);
+	};
+
 	return (
 		<>
 			<InfiniteScroll
@@ -67,7 +72,7 @@ export const DogsList = (props: Props) => {
 				}>
 				<ul className='Dogs-list'>
 					{items.map(item => (
-						<DogItem dog={item} key={crypto.randomUUID()} setView={() => setView(2)} />
+						<DogItem dog={item} key={crypto.randomUUID()} setView={() => setView(2)} handleClick={handleClick} />
 					))}
 				</ul>
 			</InfiniteScroll>
