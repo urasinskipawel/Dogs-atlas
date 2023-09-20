@@ -2,8 +2,6 @@
 
 A simple prototype of an mobile application for searching dog breeds.
 
-## Demo 🎥
-
 ## Table of Contents 📖
 
 - [General Information](#general-information)
@@ -45,9 +43,22 @@ $ npm run dev
 > 
 ## Screenshots <a name="screenshots"/> 📸
 
+- Dogs List
+
+<a href="https://ibb.co/crNSF1S"><img src="https://i.ibb.co/sVFdw2d/list-portr.png" alt="list-portrait-loading" border="0" width = "200px" /></a>
+<a href="https://ibb.co/2KRGgKJ"><img src="https://i.ibb.co/NYfcZYR/list-portrait.png" alt="list-portrait" border="0" width = "200px" /></a>
+<a href="https://ibb.co/MkdVgWg"><img src="https://i.ibb.co/1Gcq0h0/list-horiz.png" alt="list-horizontal" border="0" width = "400px" /></a>
+
+- Dogs Search
+
+<a href="https://ibb.co/cXxp68w"><img src="https://i.ibb.co/PztbcWM/search-loading.png" alt="search-portrait-loading" border="0" width = "200px" /></a>
+<a href="https://ibb.co/F5p4NHC"><img src="https://i.ibb.co/hB0FhYw/search-portr.png" alt="search-portrait" border="0" width = "200px" /></a>
+<a href="https://ibb.co/j3r6wBB"><img src="https://i.ibb.co/bNKWvqq/search-horiz.png" alt="search-horizontal" border="0" width = "400px" /></a>
+
 ## Ideas & Improvements <a name="ideas-improvements"/> 🚀
 
-Currently, the application has been completed for the intended concept.
+Currently, the application has been completed for the intended concept. 
+Due to the start of my internship, I had to postpone the rest of my ideas for a better time.
 
 In the future I'm going to build the app using React Native.
 
